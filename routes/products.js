@@ -4,7 +4,7 @@ import { getParticularProduct, addProducts, deleteProducts, updatePrducts ,getAl
 const router = express.Router()
 
 //find products with particular category
-router.get('/products', async function (req, res) {
+router.get('/', async function (req, res) {
      const { category, rating } = req.query;
      console.log(req.query, category, rating);
 
@@ -34,7 +34,7 @@ router.get('/products', async function (req, res) {
 
 });
 //find products with particular with use id
-router.get('/products/:id', async function (req, res) {
+router.get('/:id', async function (req, res) {
      //to get a particular id value
      const { id } = req.params;
      console.log(req.params, id);
@@ -53,7 +53,7 @@ router.get('/products/:id', async function (req, res) {
 
 });
 // add products
-router.post('/products', async function (req, res) {
+router.post('/', async function (req, res) {
      //req.body => is use to add data in body
      const newProduct = req.body;
      console.log(newProduct);
@@ -61,7 +61,7 @@ router.post('/products', async function (req, res) {
      res.send(result);
 });
 //delete product 
-router.delete('/products/:id', async function (req, res) {
+router.delete('/:id', async function (req, res) {
      //to get a particular id value
      const { id } = req.params;
      console.log(req.params, id);
@@ -69,7 +69,7 @@ router.delete('/products/:id', async function (req, res) {
      res.send(productDelete);
 });
 //update products
-router.put('/products/:id', async function (req, res) {
+router.put('/:id', async function (req, res) {
      const { id } = req.params;
      const updatedProduct = req.body;
      const result = await updatePrducts(id, updatedProduct);
