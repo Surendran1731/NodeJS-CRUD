@@ -9,13 +9,13 @@ import cors from 'cors';
 import { productsRouter } from "./routes/products.js";
 import * as dotenv from 'dotenv'
 dotenv.config()
-app.use(cors())
+
 export const app = express()
 const PORT=2429;
 
 //Inbuilt middleware =>  say data is in json => converting body to json
 app.use(express.json())
-
+app.use(cors())
 // console.log(process.env.MONGO_URL);
 
 const MONGO_URL=process.env.MONGO_URL;
