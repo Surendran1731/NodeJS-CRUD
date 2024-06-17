@@ -8,11 +8,11 @@ import { MongoClient } from 'mongodb';
 import cors from 'cors';
 import { productsRouter } from "./routes/products.js";
 import * as dotenv from 'dotenv'
-dotenv.config()
+ 
 
 export const app = express()
 const PORT=2429;
-
+dotenv.config()
 //Inbuilt middleware =>  say data is in json => converting body to json
 app.use(express.json())
 app.use(cors())
