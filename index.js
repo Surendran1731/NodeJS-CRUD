@@ -5,10 +5,11 @@
  
 import express from "express";
 import { MongoClient } from 'mongodb';
+import cors from 'cors';
 import { productsRouter } from "./routes/products.js";
 import * as dotenv from 'dotenv'
 dotenv.config()
-
+app.use(cors())
 export const app = express()
 const PORT=2429;
 
