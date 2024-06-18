@@ -8,7 +8,8 @@ import { MongoClient } from 'mongodb';
 import cors from 'cors';
 import { productsRouter } from "./routes/products.js";
 import * as dotenv from 'dotenv'
- 
+import bcrypt from "bcrypt";
+import { usersRouter } from "./routes/users.js";
 
 export const app = express()
 const PORT=2429;
@@ -35,5 +36,10 @@ export const client=await createConnection();
      })
      // to get a products
      app.use("/products", productsRouter)
+
+     app.use("/users", usersRouter)
+
+
+
 
 app.listen(PORT,()=>(`SERVER RUNNING SUCCESSFULLY ${PORT}`))

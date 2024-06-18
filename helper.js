@@ -1,19 +1,34 @@
 import { client } from "./index.js";
 
 
-export async function getParticularProduct(id) {
+ async function getParticularProduct(id) {
      return await client.db("CRUD").collection("products").findOne({ id: id });
 }
-export async function addProducts(newProduct) {
+ async function addProducts(newProduct) {
      return await client.db("CRUD").collection("products").insertMany(newProduct);
 }
-export async function updatePrducts(id, updatedProduct) {
+ async function updatePrducts(id, updatedProduct) {
      return await client.db("CRUD").collection("products").updateOne({ id: id }, { $set: updatedProduct });
 }
-export async function deleteProducts(id) {
+ async function deleteProducts(id) {
      return await client.db("CRUD").collection("products").deleteOne({ id: id });
 }
 
-export async function getAllProducts(query) {
+ async function getAllProducts(query) {
      return await client.db("CRUD").collection("products").find(query).toArray();
 }
+
+async function genPassword(password){
+     const salt =await bcrypt.genSalt(10) //bcrypt.genSalt(no.of rounds)
+     console.log(salt);
+     const hashedPassword = await bcrypt.hash(password,salt)
+     console.log(hashedPassword);
+     return hashedPassword
+ }
+
+ export { getParticularProduct, 
+     addProducts, 
+     deleteProducts, 
+     updatePrducts ,
+     getAllProducts,
+     genPassword}
