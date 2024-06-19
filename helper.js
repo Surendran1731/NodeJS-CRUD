@@ -1,5 +1,5 @@
 import { client } from "./index.js";
-
+import bcrypt from "bcrypt";
 
  async function getParticularProduct(id) {
      return await client.db("CRUD").collection("products").findOne({ id: id });
@@ -21,14 +21,29 @@ import { client } from "./index.js";
 async function genPassword(password){
      const salt =await bcrypt.genSalt(10) //bcrypt.genSalt(no.of rounds)
      console.log(salt);
-     const hashedPassword = await bcrypt.hash(password,salt)
-     console.log(hashedPassword);
+     const hashedPassword = await bcrypt.hash(password, salt)
+     console.log(hashedPassword) 
      return hashedPassword
  }
 
+ async function createUser(username, hashedPassword) {
+     return await client.db("CRUD").collection("users")
+         .insertOne({ username: username, password: hashedPassword });
+ }
+
+
+async function getUserByName(username) {
+     return await client.db("CRUD").collection("users")
+         .findOne({ username: username });
+ }
+
+ 
  export { getParticularProduct, 
      addProducts, 
      deleteProducts, 
      updatePrducts ,
      getAllProducts,
-     genPassword}
+     genPassword,
+     createUser,
+     getUserByName
+}

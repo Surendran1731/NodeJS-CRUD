@@ -8,7 +8,6 @@ import { MongoClient } from 'mongodb';
 import cors from 'cors';
 import { productsRouter } from "./routes/products.js";
 import * as dotenv from 'dotenv'
-import bcrypt from "bcrypt";
 import { usersRouter } from "./routes/users.js";
 
 export const app = express()
